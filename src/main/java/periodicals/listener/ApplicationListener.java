@@ -2,14 +2,12 @@ package periodicals.listener;
 
 import periodicals.dao.DaoFactory;
 import periodicals.dao.PeriodicalDao;
-import periodicals.dao.mysql.MySqlDaoFactory;
 import periodicals.dao.PersistException;
-import periodicals.domain.Periodical;
+import periodicals.dao.mysql.MySqlDaoFactory;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
-import java.util.List;
 
 @WebListener
 public class ApplicationListener implements ServletContextListener {
