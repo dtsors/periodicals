@@ -33,4 +33,16 @@ class MySqlProperties {
     String getDriver() {
         return properties.getProperty("driver");
     }
+
+    String getCachePrepStmts() {
+        return properties.getProperty("cachePrepStmts");
+    }
+
+    String getPrepStmtCacheSize() {
+        return properties.getProperty("prepStmtCacheSize");
+    }
+
+    String getPrepStmtCacheSqlLimit() {
+        return properties.getProperty("prepStmtCacheSqlLimit");
+    }
 }

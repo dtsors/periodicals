@@ -17,9 +17,9 @@ class MySqlCP {//TODO: multithreaded singleton
             config.setUsername(prop.getUser());
             config.setPassword(prop.getPassword());
             config.setDriverClassName(prop.getDriver());
-            config.addDataSourceProperty("cachePrepStmts", "true");
-            config.addDataSourceProperty("prepStmtCacheSize", "250");
-            config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
+            config.addDataSourceProperty("cachePrepStmts", prop.getCachePrepStmts());
+            config.addDataSourceProperty("prepStmtCacheSize", prop.getPrepStmtCacheSize());
+            config.addDataSourceProperty("prepStmtCacheSqlLimit", prop.getPrepStmtCacheSqlLimit());
             instance = new HikariDataSource(config);
         }
         return instance;
