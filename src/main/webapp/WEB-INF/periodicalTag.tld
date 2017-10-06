@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/javaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+        version="2.1">
+
+    <tlib-version>1.0</tlib-version>
+    <short-name>lists</short-name>
+    <uri>/WEB-INF/periodicalTag</uri>
+    <tag>
+        <name>getPeriodicals</name>
+        <tag-class>periodicals.tags.PeriodicalsTag</tag-class>
+        <body-content>empty</body-content>
+    </tag>
+    <tag>
+        <name>getUsers</name>
+        <tag-class>periodicals.tags.UsersTag</tag-class>
+        <body-content>empty</body-content>
+    </tag>
+
+    <tag>
+        <name>getPeriodical</name>
+        <tag-class>periodicals.tags.PeriodicalsTag</tag-class>
+        <body-content>empty</body-content>
+    </tag>
+    <tag>
+        <name>getUser</name>
+        <tag-class>periodicals.tags.UsersTag</tag-class>
+        <body-content>empty</body-content>
+    </tag>
+
+</taglib>

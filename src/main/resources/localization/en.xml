@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="Add periodical">Add periodical</entry>
+    <entry key="Cost">Cost</entry>
+    <entry key="Delete">Delete</entry>
+    <entry key="Description">Description</entry>
+    <entry key="Edit">Edit</entry>
+    <entry key="Email">Email</entry>
+    <entry key="Error">Error</entry>
+    <entry key="IssuesPerMonth">Issues Per Month</entry>
+    <entry key="Login">Login</entry>
+    <entry key="Language">Language</entry>
+    <entry key="Main">Main</entry>
+    <entry key="Name">Name</entry>
+    <entry key="Password">Password</entry>
+    <entry key="Periodicals">Periodicals</entry>
+    <entry key="Registration">Registration</entry>
+    <entry key="Submit">Submit</entry>
+    <entry key="Subscribers">Subscribers</entry>
+</properties>

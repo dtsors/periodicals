@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="Add periodical">Добавить издание</entry>
+    <entry key="Cost">Цена</entry>
+    <entry key="Delete">Удалить</entry>
+    <entry key="Description">Описание</entry>
+    <entry key="Edit">Редактировать</entry>
+    <entry key="Error">Ошибка</entry>
+    <entry key="Email">Почта</entry>
+    <entry key="IssuesPerMonth">Кол-во выходов в месяц</entry>
+    <entry key="Login">Логин</entry>
+    <entry key="Language">Язык</entry>
+    <entry key="Main">Главная</entry>
+    <entry key="Name">Название</entry>
+    <entry key="Password">Пароль</entry>
+    <entry key="Periodicals">Периодические издания</entry>
+    <entry key="Registration">Регистрация</entry>
+    <entry key="Submit">Отправить</entry>
+    <entry key="Subscribers">Подписчики</entry>
+</properties>

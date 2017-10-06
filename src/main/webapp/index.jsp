@@ -1,43 +1,33 @@
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Periodicals</title>
-    <link rel="stylesheet" href="css/css.css">
-</head>
-<body>
-
-<%@page isELIgnored="false" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="myTag" uri="myTagLib" %>
-
-<h1>Periodicals</h1>
-<a href="adduserform.jsp">Registration</a><br><br>
-<table border="1" width="90%">
+<%@ taglib prefix="l" uri="/WEB-INF/localizationTag" %>
+<%@ taglib prefix="lists" uri="/WEB-INF/periodicalTag" %>
+<c:set scope="request" var="title" value="Periodicals"/>
+<jsp:include page="header.jsp"/>
+<h1><l:translate key="Periodicals"/></h1>
+<table border="1" width="100%">
     <tr>
         <th>Id</th>
-        <th>Name</th>
-        <th>Description</th>
-        <th>IssuesPerMonth</th>
-        <th>Cost</th>
-        <th>Edit</th>
-        <th>Delete</th>
+        <th><l:translate key="Name"/></th>
+        <th><l:translate key="Description"/></th>
+        <th><l:translate key="IssuesPerMonth"/></th>
+        <th><l:translate key="Cost"/></th>
+        <th><l:translate key="Edit"/></th>
+        <th><l:translate key="Delete"/></th>
     </tr>
-    <myTag:getPeriodicals/>
-    <c:forEach items="${list}" var="p">
+    <lists:getPeriodicals/>
+    <c:forEach items="${periodicalslist}" var="periodicals">
         <tr>
-            <td>${p.getId()}</td>
-            <td>${p.getName()}</td>
-            <td>${p.getDescription()}</td>
-            <td>${p.getIssuesPerMonth()}</td>
-            <td>${p.getCost()}</td>
-            <td><a href="editperiodicalform.jsp?id=${p.getId()}">Edit</a></td>
-            <td><a href="deleteperiodical.jsp?id=${p.getId()}">Delete</a></td>
+            <td>${periodicals.getId()}</td>
+            <td>${periodicals.getName()}</td>
+            <td>${periodicals.getDescription()}</td>
+            <td>${periodicals.getIssuesPerMonth()}</td>
+            <td>${periodicals.getCost()}</td>
+            <td><a href="editformperiodical.jsp?id=${periodicals.getId()}"><l:translate key="Edit"/></a></td>
+            <td><a href="deleteperiodical.jsp?id=${periodicals.getId()}"><l:translate key="Delete"/></a></td>
         </tr>
     </c:forEach>
 </table>
-<br/><a href="addperiodicalform.jsp">Add New Periodical</a>
-
-</body>
-</html>
+<br>
+<a href="addperiodicalform.jsp"><l:translate key="Add periodical"/></a>
+<a href="viewusers.jsp"><l:translate key="Subscribers"/></a>
+<jsp:include page="footer.jsp"/>
