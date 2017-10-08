@@ -12,10 +12,10 @@ import javax.servlet.annotation.WebListener;
 
 @WebListener
 public class ApplicationListener implements ServletContextListener {
-    private static final Logger logger = Logger.getLogger(ApplicationListener.class);
+    private static final Logger LOGGER = Logger.getLogger(ApplicationListener.class);
 
     public void contextInitialized(ServletContextEvent servletContextEvent) {
-        logger.info(">>App started");
+        LOGGER.info(">>App started");
         long currentTimeMillis = System.currentTimeMillis();
         final DaoFactory daoFactory = new MySqlDaoFactory();
         servletContextEvent.getServletContext().setAttribute("periodicals.model", daoFactory);
@@ -23,15 +23,15 @@ public class ApplicationListener implements ServletContextListener {
         try {
             periodicalDao.getAllRecords();
         } catch (PersistException e) {
-            logger.error(">>Can't start DB", e);
+            LOGGER.error(">>Can't start DB", e);
         }
         currentTimeMillis = System.currentTimeMillis() - currentTimeMillis;
-        logger.info(">>DB started after " + currentTimeMillis);
+        LOGGER.info(">>DB started after " + currentTimeMillis);
     }
 
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
         DaoFactory daoFactory = (DaoFactory) servletContextEvent.getServletContext().getAttribute("periodicals.model");
         daoFactory.close();
-        logger.info(">>App closed");
+        LOGGER.info(">>App closed");
     }
 }

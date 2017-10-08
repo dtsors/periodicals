@@ -1,4 +1,4 @@
-package periodicals.domain;
+package periodicals.model.entity;
 
 import lombok.Getter;
 import lombok.Setter;

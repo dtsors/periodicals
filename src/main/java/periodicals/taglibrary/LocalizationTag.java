@@ -1,4 +1,4 @@
-package periodicals.tags;
+package periodicals.taglibrary;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -8,6 +8,7 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -16,7 +17,7 @@ public class LocalizationTag extends TagSupport {
     @Setter
     private String key;
     private static final Logger logger = Logger.getLogger(LocalizationTag.class);
-    private static final ConcurrentHashMap<String, Properties> concurrentHashMap = new ConcurrentHashMap<>();
+    private static final Map<String, Properties> concurrentHashMap = new ConcurrentHashMap<>();
 
     public LocalizationTag() {
         try {

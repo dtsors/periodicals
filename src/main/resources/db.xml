@@ -3,7 +3,7 @@
 <properties>
     <entry key="user">root</entry>
     <entry key="password">password</entry>
-    <entry key="url">jdbc:mysql://localhost:3306/periodicals?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false</entry>
+    <entry key="url">jdbc:mysql://localhost:3306/periodicals?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false</entry>
     <entry key="driver">com.mysql.jdbc.Driver</entry>
     <entry key="cachePrepStmts">true</entry>
     <entry key="prepStmtCacheSize">250</entry>

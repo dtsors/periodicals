@@ -2,7 +2,7 @@
 <%@ taglib prefix="l" uri="/WEB-INF/localizationTag" %>
 <%@ taglib prefix="lists" uri="/WEB-INF/periodicalTag" %>
 <c:set scope="request" var="title" value="Periodicals"/>
-<jsp:include page="header.jsp"/>
+<%@ include file="header.jsp" %>
 <h1><l:translate key="Periodicals"/></h1>
 <table border="1" width="100%">
     <tr>
@@ -22,12 +22,14 @@
             <td>${periodicals.getDescription()}</td>
             <td>${periodicals.getIssuesPerMonth()}</td>
             <td>${periodicals.getCost()}</td>
-            <td><a href="editformperiodical.jsp?id=${periodicals.getId()}"><l:translate key="Edit"/></a></td>
-            <td><a href="deleteperiodical.jsp?id=${periodicals.getId()}"><l:translate key="Delete"/></a></td>
+            <td><a href="editperiodicalform.jsp?id=${periodicals.getId()}"><l:translate key="Edit"/></a></td>
+            <td>
+                <a href="delete/periodical?id=${periodicals.getId()}"
+                   onclick='return confirm("<l:translate key="Confirm deletion"/>")'>
+                    <l:translate key="Delete"/>
+                </a>
+            </td>
         </tr>
     </c:forEach>
 </table>
-<br>
-<a href="addperiodicalform.jsp"><l:translate key="Add periodical"/></a>
-<a href="viewusers.jsp"><l:translate key="Subscribers"/></a>
-<jsp:include page="footer.jsp"/>
+<%@ include file="footer.html" %>

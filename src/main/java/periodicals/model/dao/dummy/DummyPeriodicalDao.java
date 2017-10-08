@@ -1,7 +1,7 @@
 package periodicals.model.dao.dummy;
 
 import periodicals.model.dao.PeriodicalDao;
-import periodicals.domain.Periodical;
+import periodicals.model.entity.Periodical;
 import periodicals.model.dao.exceptions.PersistException;
 
 import java.util.ArrayList;

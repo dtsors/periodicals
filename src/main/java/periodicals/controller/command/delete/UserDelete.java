@@ -1,30 +1,30 @@
-package periodicals.controller;
+package periodicals.controller.command.delete;
 
-import periodicals.domain.User;
+import periodicals.controller.command.Command;
+import periodicals.controller.command.CommandResult;
+import periodicals.model.entity.User;
 import periodicals.model.dao.DaoFactory;
 import periodicals.model.dao.UserDao;
 import periodicals.model.dao.exceptions.PersistException;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "DeleteUser", urlPatterns = {"/deleteuser.jsp"})
-public class DeleteUser extends HttpServlet {
+public class UserDelete implements Command {
     @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public CommandResult execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         DaoFactory daoFactory = (DaoFactory) req.getServletContext().getAttribute("periodicals.model");
         UserDao userDao = daoFactory.getUserDao();
         User user = new User();
         user.setId(Integer.parseInt(req.getParameter("id")));
+        int status = -1;
         try {
-            userDao.delete(user);
+            status = userDao.delete(user);
         } catch (PersistException e) {
-            e.printStackTrace();
+            LOGGER.error(e);
         }
-        getServletContext().getRequestDispatcher("/viewusers.jsp").forward(req, resp);
+        return new CommandResult(SUBSCRIBERS, status);
     }
 }

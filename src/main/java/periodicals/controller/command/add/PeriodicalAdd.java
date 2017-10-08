@@ -1,21 +1,20 @@
-package periodicals.controller;
+package periodicals.controller.command.add;
 
-import periodicals.domain.Periodical;
+import periodicals.controller.command.Command;
+import periodicals.controller.command.CommandResult;
 import periodicals.model.dao.DaoFactory;
 import periodicals.model.dao.PeriodicalDao;
 import periodicals.model.dao.exceptions.PersistException;
+import periodicals.model.entity.Periodical;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "AddPeriodical", urlPatterns = {"/addperiodical.jsp"})
-public class AddPeriodical extends HttpServlet {
+public class PeriodicalAdd implements Command{
     @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public CommandResult execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         DaoFactory daoFactory = (DaoFactory) req.getServletContext().getAttribute("periodicals.model");
         PeriodicalDao periodicalDao = daoFactory.getPeriodicalDao();
         Periodical periodical = new Periodical();
@@ -23,11 +22,12 @@ public class AddPeriodical extends HttpServlet {
         periodical.setDescription(req.getParameter("description"));
         periodical.setIssuesPerMonth(Integer.parseInt(req.getParameter("issuesPerMonth")));
         periodical.setCost(req.getParameter("cost"));
+        int status = -1;
         try {
-            periodicalDao.save(periodical);
+            status = periodicalDao.save(periodical);
         } catch (PersistException e) {
-            e.printStackTrace();
+            LOGGER.error(e);
         }
-        getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
+        return new CommandResult(HOME_PAGE, status);
     }
 }

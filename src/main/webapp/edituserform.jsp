@@ -1,9 +1,9 @@
 <%@ taglib prefix="l" uri="/WEB-INF/localizationTag" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page import="periodicals.domain.User,periodicals.model.dao.DaoFactory" %>
+<%@page import="periodicals.model.entity.User,periodicals.model.dao.DaoFactory" %>
 <%@ page import="periodicals.model.dao.UserDao" %>
 <%@ page import="periodicals.model.dao.exceptions.PersistException" %>
-<jsp:useBean id="user" class="periodicals.domain.User"></jsp:useBean>
+<jsp:useBean id="user" class="periodicals.model.entity.User"></jsp:useBean>
 <%
     String id = request.getParameter("id");
     DaoFactory daoFactory = (DaoFactory) application.getAttribute("periodicals.model");
@@ -16,9 +16,9 @@
     }
 %>
 <c:set scope="request" var="title" value="Edit" />
-<jsp:include page="header.jsp"/>
+<%@ include file="header.jsp" %>
 <h1><l:translate key="Edit"/></h1>
-<form action="edituser.jsp" method="post">
+<form action="/edit/user" method="post">
     <input type="hidden" name="id" value="<%= u.getId()%>"/>
     <table>
         <tr>
@@ -38,4 +38,4 @@
         </tr>
     </table>
 </form>
-<jsp:include page="footer.jsp"/>
+<%@ include file="footer.html" %>

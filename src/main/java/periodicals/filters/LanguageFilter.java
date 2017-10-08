@@ -5,7 +5,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
-@WebFilter(filterName = "LanguageFilter", urlPatterns = {"*.jsp"})
+@WebFilter(filterName = "LanguageFilter", urlPatterns = {"/add/*", "/edit/*", "/delete/*", "*.jsp"})
 public class LanguageFilter implements javax.servlet.Filter {
     public void destroy() {
     }

@@ -2,6 +2,7 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
     <entry key="Add periodical">Добавить издание</entry>
+    <entry key="Confirm deletion">Подтвердите удаление</entry>
     <entry key="Cost">Цена</entry>
     <entry key="Delete">Удалить</entry>
     <entry key="Description">Описание</entry>

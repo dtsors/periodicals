@@ -2,7 +2,7 @@ package periodicals.model.dao.mysql;
 
 import org.apache.log4j.Logger;
 import periodicals.model.dao.UserDao;
-import periodicals.domain.User;
+import periodicals.model.entity.User;
 import periodicals.model.dao.exceptions.PersistException;
 
 import java.sql.Connection;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MySqlUserDao implements UserDao {
-    private static final Logger logger = Logger.getLogger(MySqlUserDao.class);
+//    private static final Logger LOGGER = Logger.getLogger(MySqlUserDao.class);
     private static final String TABLE_NAME = "users";
 
     @Override
@@ -27,7 +27,7 @@ public class MySqlUserDao implements UserDao {
             statement.setString(3, user.getEmail());
             status = statement.executeUpdate();
         } catch (SQLException e) {
-            logger.error(">>Can't insert in " + TABLE_NAME, e);
+            LOGGER.error(">>Can't insert in " + TABLE_NAME, e);
             throw new PersistException(e);
         }
         return status;
@@ -45,7 +45,7 @@ public class MySqlUserDao implements UserDao {
             statement.setInt(4, user.getId());
             status = statement.executeUpdate();
         } catch (SQLException e) {
-            logger.error(">>Can't update " + TABLE_NAME, e);
+            LOGGER.error(">>Can't update " + TABLE_NAME, e);
             throw new PersistException(e);
         }
         return status;
@@ -59,7 +59,7 @@ public class MySqlUserDao implements UserDao {
             statement.setInt(1, user.getId());
             status = statement.executeUpdate();
         } catch (SQLException e) {
-            logger.error(">>Can't delete from " + TABLE_NAME, e);
+            LOGGER.error(">>Can't delete from " + TABLE_NAME, e);
             throw new PersistException(e);
         }
         return status;
@@ -81,7 +81,7 @@ public class MySqlUserDao implements UserDao {
                 users.add(user);
             }
         } catch (SQLException e) {
-            logger.error(">>Can't read batch from " + TABLE_NAME, e);
+            LOGGER.error(">>Can't read batch from " + TABLE_NAME, e);
             throw new PersistException(e);
         }
         return users;
@@ -107,7 +107,7 @@ public class MySqlUserDao implements UserDao {
         } catch (SQLException e) {
             throw new PersistException(e);
         } finally {
-            MySqlUtil.closeResultSet(resultSet, TABLE_NAME, logger);
+            MySqlUtil.closeResultSet(resultSet, TABLE_NAME, LOGGER);
         }
         return user;
     }

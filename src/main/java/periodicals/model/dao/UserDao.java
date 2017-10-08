@@ -1,6 +1,6 @@
 package periodicals.model.dao;
 
-import periodicals.domain.User;
+import periodicals.model.entity.User;
 
 public interface UserDao extends GenericDao<User>{
 }

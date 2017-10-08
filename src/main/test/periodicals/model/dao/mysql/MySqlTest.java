@@ -1,6 +1,6 @@
 package periodicals.model.dao.mysql;
 
-import periodicals.domain.User;
+import periodicals.model.entity.User;
 import periodicals.model.dao.DaoFactory;
 import periodicals.model.dao.UserDao;
 import periodicals.model.dao.exceptions.PersistException;

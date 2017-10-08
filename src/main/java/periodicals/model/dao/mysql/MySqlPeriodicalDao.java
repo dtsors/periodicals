@@ -2,7 +2,7 @@ package periodicals.model.dao.mysql;
 
 import org.apache.log4j.Logger;
 import periodicals.model.dao.PeriodicalDao;
-import periodicals.domain.Periodical;
+import periodicals.model.entity.Periodical;
 import periodicals.model.dao.exceptions.PersistException;
 
 import java.math.BigDecimal;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MySqlPeriodicalDao implements PeriodicalDao {
-    private static final Logger logger = Logger.getLogger(MySqlPeriodicalDao.class);
+//    private static final Logger LOGGER = Logger.getLogger(MySqlPeriodicalDao.class);
     private static final String TABLE_NAME = "periodicals";
 
     @Override
@@ -29,7 +29,7 @@ public class MySqlPeriodicalDao implements PeriodicalDao {
             statement.setBigDecimal(4, new BigDecimal(periodical.getCost()));
             status = statement.executeUpdate();
         } catch (SQLException e) {
-            logger.error(">>Can't insert in " + TABLE_NAME, e);
+            LOGGER.error(">>Can't insert in " + TABLE_NAME, e);
             throw new PersistException(e);
         }
         return status;
@@ -48,7 +48,7 @@ public class MySqlPeriodicalDao implements PeriodicalDao {
             statement.setInt(5, periodical.getId());
             status = statement.executeUpdate();
         } catch (SQLException e) {
-            logger.error(">>Can't update " + TABLE_NAME, e);
+            LOGGER.error(">>Can't update " + TABLE_NAME, e);
             throw new PersistException(e);
         }
         return status;
@@ -63,7 +63,7 @@ public class MySqlPeriodicalDao implements PeriodicalDao {
             statement.setInt(1, periodical.getId());
             status = statement.executeUpdate();
         } catch (SQLException e) {
-            logger.error(">>Can't delete from " + TABLE_NAME, e);
+            LOGGER.error(">>Can't delete from " + TABLE_NAME, e);
             throw new PersistException(e);
         }
         return status;
@@ -86,7 +86,7 @@ public class MySqlPeriodicalDao implements PeriodicalDao {
                 periodicals.add(periodical);
             }
         } catch (SQLException e) {
-            logger.error(">>Can't read batch from " + TABLE_NAME, e);
+            LOGGER.error(">>Can't read batch from " + TABLE_NAME, e);
             throw new PersistException(e);
         }
         return periodicals;
@@ -111,10 +111,10 @@ public class MySqlPeriodicalDao implements PeriodicalDao {
                 periodical.setCost(resultSet.getBigDecimal("cost").toString());
             }
         } catch (SQLException e) {
-            logger.error(">>Can't get record from " + TABLE_NAME, e);
+            LOGGER.error(">>Can't get record from " + TABLE_NAME, e);
             throw new PersistException(e);
         } finally {
-            MySqlUtil.closeResultSet(resultSet, TABLE_NAME, logger);
+            MySqlUtil.closeResultSet(resultSet, TABLE_NAME, LOGGER);
         }
         return periodical;
     }

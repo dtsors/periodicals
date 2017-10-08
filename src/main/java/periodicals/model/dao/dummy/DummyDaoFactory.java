@@ -7,7 +7,6 @@ import periodicals.model.dao.UserDao;
 public class DummyDaoFactory implements DaoFactory {
     @Override
     public void close() {
-
     }
 
     @Override

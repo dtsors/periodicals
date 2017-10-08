@@ -7,24 +7,45 @@
     <version>1.0-SNAPSHOT</version>
     <name>periodicals Maven Webapp</name>
     <url>http://maven.apache.org</url>
+
+    <properties>
+        <servlet-api.version>3.1.0</servlet-api.version>
+        <jsp.version>2.3.0</jsp.version>
+        <el.version>3.0.0</el.version>
+        <jstl.version>1.2</jstl.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
     <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
+<!--        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
             <version>6.0</version>
             <scope>provided</scope>
+        </dependency>-->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${servlet-api.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>javax.servlet.jsp-api</artifactId>
+            <version>${jsp.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.el</groupId>
+            <artifactId>javax.el-api</artifactId>
+            <version>${el.version}</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <version>2.5</version>
-            <scope>provided</scope>
+            <artifactId>jstl</artifactId>
+            <version>${jstl.version}</version>
+            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -35,12 +56,6 @@
             <groupId>com.zaxxer</groupId>
             <artifactId>HikariCP-java7</artifactId>
             <version>2.4.13</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jstl</artifactId>
-            <version>1.2</version>
-            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>
@@ -59,7 +74,14 @@
             <version>1.7.21</version>
             <scope>runtime</scope>
         </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
+
     <build>
         <finalName>periodicals</finalName>
         <plugins>
@@ -74,7 +96,4 @@
             </plugin>
         </plugins>
     </build>
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
 </project>
