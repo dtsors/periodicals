@@ -9,7 +9,7 @@ import java.util.List;
 
 public class DummyUserDao implements UserDao {
     @Override
-    public int save(User o) throws PersistException {
+    public int create(User o) throws PersistException {
         return 0;
     }
 
@@ -19,7 +19,7 @@ public class DummyUserDao implements UserDao {
     }
 
     @Override
-    public int delete(User o) throws PersistException {
+    public int delete(int id) throws PersistException {
         return 0;
     }
 
@@ -34,6 +34,16 @@ public class DummyUserDao implements UserDao {
 
     @Override
     public User getRecordById(int id) throws PersistException {
+        return null;
+    }
+
+    @Override
+    public User getRecordByEmail(String email) throws PersistException {
+        return null;
+    }
+
+    @Override
+    public User getRecordByToken(String token) throws PersistException {
         return null;
     }
 }

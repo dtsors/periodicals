@@ -9,7 +9,7 @@ import java.util.List;
 
 public class DummyPeriodicalDao implements PeriodicalDao {
     @Override
-    public int save(Periodical o) throws PersistException {
+    public int create(Periodical o) throws PersistException {
         return 0;
     }
 
@@ -19,7 +19,7 @@ public class DummyPeriodicalDao implements PeriodicalDao {
     }
 
     @Override
-    public int delete(Periodical o) throws PersistException {
+    public int delete(int id) throws PersistException {
         return 0;
     }
 

@@ -1,48 +1,48 @@
-package periodicals.model.dao.mysql;
+package periodicals.model.config;
 
 import org.apache.log4j.Logger;
 
 import java.io.InputStream;
 import java.util.Properties;
 
-class MySqlProperties {
-    private static final Logger logger = Logger.getLogger(MySqlProperties.class);
+public class MySqlProperties {
+    private static final Logger LOGGER = Logger.getLogger(MySqlProperties.class);
     private static final Properties properties = new Properties();
 
-    MySqlProperties() {
+    public MySqlProperties() {
         try {
             InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("db.xml");
             properties.loadFromXML(inputStream);
         } catch (Exception e) {
-            logger.error(">>Can't load MySQL connection settings", e);
+            LOGGER.error(">>Can't load MySQL connection settings", e);
         }
     }
 
-    String getUser() {
+    public String getUser() {
         return properties.getProperty("user");
     }
 
-    String getPassword() {
+    public String getPassword() {
         return properties.getProperty("password");
     }
 
-    String getUrl() {
+    public String getUrl() {
         return properties.getProperty("url");
     }
 
-    String getDriver() {
+    public String getDriver() {
         return properties.getProperty("driver");
     }
 
-    String getCachePrepStmts() {
+    public String getCachePrepStmts() {
         return properties.getProperty("cachePrepStmts");
     }
 
-    String getPrepStmtCacheSize() {
+    public String getPrepStmtCacheSize() {
         return properties.getProperty("prepStmtCacheSize");
     }
 
-    String getPrepStmtCacheSqlLimit() {
+    public String getPrepStmtCacheSqlLimit() {
         return properties.getProperty("prepStmtCacheSqlLimit");
     }
 }

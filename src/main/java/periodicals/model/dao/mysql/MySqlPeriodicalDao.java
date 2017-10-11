@@ -1,9 +1,8 @@
 package periodicals.model.dao.mysql;
 
-import org.apache.log4j.Logger;
 import periodicals.model.dao.PeriodicalDao;
-import periodicals.model.entity.Periodical;
 import periodicals.model.dao.exceptions.PersistException;
+import periodicals.model.entity.Periodical;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -14,11 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MySqlPeriodicalDao implements PeriodicalDao {
-//    private static final Logger LOGGER = Logger.getLogger(MySqlPeriodicalDao.class);
     private static final String TABLE_NAME = "periodicals";
 
     @Override
-    public int save(final Periodical periodical) throws PersistException {
+    public int create(final Periodical periodical) throws PersistException {
         int status;
         String query = "INSERT INTO " + TABLE_NAME + "(name, description, issuesPerMonth, cost) VALUES(?,?,?,?)";
         try (final Connection connection = MySqlCP.getInstance().getConnection();
@@ -55,12 +53,12 @@ public class MySqlPeriodicalDao implements PeriodicalDao {
     }
 
     @Override
-    public int delete(final Periodical periodical) throws PersistException {
+    public int delete(final int id) throws PersistException {
         int status;
         String query = "DELETE FROM " + TABLE_NAME + " WHERE id=?";
         try (final Connection connection = MySqlCP.getInstance().getConnection();
              final PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setInt(1, periodical.getId());
+            statement.setInt(1, id);
             status = statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.error(">>Can't delete from " + TABLE_NAME, e);

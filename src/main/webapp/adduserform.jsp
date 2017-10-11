@@ -2,24 +2,22 @@
 <%@ taglib prefix="l" uri="/WEB-INF/localizationTag" %>
 <c:set scope="request" var="title" value="Registration"/>
 <%@ include file="header.jsp" %>
-<h1><l:translate key="Registration"/></h1>
-<form action="/add/user" method="post">
-    <table>
-        <tr>
-            <td><l:translate key="Login"/>:</td>
-            <td><input type="text" name="login" value="test"/></td>
-        </tr>
-        <tr>
-            <td><l:translate key="Password"/>:</td>
-            <td><input type="password" name="password" value="test"/></td>
-        </tr>
-        <tr>
-            <td><l:translate key="Email"/>:</td>
-            <td><input type="email" name="email" value="test@test"/></td>
-        </tr>
-        <tr>
-            <td colspan="2"><input type="submit" value="<l:translate key="Submit"/>"/></td>
-        </tr>
-    </table>
-</form>
-<%@ include file="footer.html" %>
+<div class="container">
+    <form class="form-signin" action="add/user" method="post">
+        <h1><l:translate key="Registration"/></h1>
+        <div class="form-group">
+            <label class="form-control-label"><l:translate key="Login"/></label>
+            <input type="text" class="form-control" name="login" placeholder="<l:translate key="Login"/>">
+        </div>
+        <div class="form-group">
+            <label><l:translate key="Email"/></label>
+            <input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="<l:translate key="Email"/>">
+        </div>
+        <div class="form-group">
+            <label><l:translate key="Password"/></label>
+            <input type="password" class="form-control" name="password" placeholder="<l:translate key="Password"/>">
+        </div>
+        <button type="submit" class="btn btn-primary"><l:translate key="Submit"/></button>
+    </form>
+</div>
+<%@ include file="footer.jsp" %>

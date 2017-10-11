@@ -12,11 +12,13 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
 
+import static periodicals.Constants.*;
+
 public class LocalizationTag extends TagSupport {
     @Getter
     @Setter
     private String key;
-    private static final Logger logger = Logger.getLogger(LocalizationTag.class);
+    private static final Logger LOGGER = Logger.getLogger(LocalizationTag.class);
     private static final Map<String, Properties> concurrentHashMap = new ConcurrentHashMap<>();
 
     public LocalizationTag() {
@@ -24,17 +26,17 @@ public class LocalizationTag extends TagSupport {
             Properties properties = new Properties();
             InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("localization/ru.xml");
             properties.loadFromXML(inputStream);
-            concurrentHashMap.put("ru", properties);
+            concurrentHashMap.put(RUSSIAN, properties);
         } catch (Exception e) {
-            logger.error(">>Can't load russian localization or it has wrong format", e);
+            LOGGER.error(">>Can't load russian localization or it has wrong format", e);
         }
         try {
             Properties properties = new Properties();
             InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("localization/en.xml");
             properties.loadFromXML(inputStream);
-            concurrentHashMap.put("en", properties);
+            concurrentHashMap.put(ENGLISH, properties);
         } catch (Exception e) {
-            logger.error(">>Can't load english localization or it has wrong format", e);
+            LOGGER.error(">>Can't load english localization or it has wrong format", e);
         }
     }
 
@@ -42,10 +44,10 @@ public class LocalizationTag extends TagSupport {
     public int doStartTag() throws JspException {
         String lang;
         if (pageContext.getSession().isNew()) {
-            pageContext.getSession().setAttribute("lang", "en");
-            lang = "en";
+            pageContext.getSession().setAttribute(SESSION_LANGUAGE, ENGLISH);
+            lang = ENGLISH;
         } else {
-            lang = (String) pageContext.getSession().getAttribute("lang");
+            lang = (String) pageContext.getSession().getAttribute(SESSION_LANGUAGE);
         }
         String out;
         if (concurrentHashMap.containsKey(lang)) {
@@ -56,7 +58,7 @@ public class LocalizationTag extends TagSupport {
         try {
             pageContext.getOut().write(out);
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error(e);
         }
         return SKIP_BODY;
     }

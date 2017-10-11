@@ -5,21 +5,25 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
+import static periodicals.Constants.*;
+import static periodicals.Constants.SESSION_LANGUAGE;
+
 @WebFilter(filterName = "LanguageFilter", urlPatterns = {"/add/*", "/edit/*", "/delete/*", "*.jsp"})
 public class LanguageFilter implements javax.servlet.Filter {
+
     public void destroy() {
     }
 
-    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
-        HttpServletRequest httpRequest = (HttpServletRequest) req;
-        String lang = req.getParameter("lang");
-        if (httpRequest.getSession().getAttribute("lang") == null){
-            httpRequest.getSession().setAttribute("lang", "en");
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
+        HttpServletRequest httpRequest = (HttpServletRequest) request;
+        String lang = request.getParameter(PARAM_LANG);
+        if (httpRequest.getSession().getAttribute(SESSION_LANGUAGE) == null){
+            httpRequest.getSession().setAttribute(SESSION_LANGUAGE, ENGLISH);
         }
         if (lang != null) {
-            httpRequest.getSession().setAttribute("lang", lang);
+            httpRequest.getSession().setAttribute(SESSION_LANGUAGE, lang);
         }
-        chain.doFilter(req, resp);
+        chain.doFilter(request, response);
     }
 
     public void init(FilterConfig config) throws ServletException {

@@ -2,8 +2,9 @@ package periodicals.model.dao.mysql;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import periodicals.model.config.MySqlProperties;
 
-class MySqlCP {//TODO: multithreaded singleton
+class MySqlCP {
     private static HikariDataSource instance = null;
 
     private MySqlCP() {

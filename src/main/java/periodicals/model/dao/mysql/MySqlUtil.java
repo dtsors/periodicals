@@ -7,6 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 class MySqlUtil {
+    private MySqlUtil() {
+    }
+
     static void closeResultSet(ResultSet resultSet, String tableName, Logger logger) throws PersistException {
         if (resultSet != null) {
             try {

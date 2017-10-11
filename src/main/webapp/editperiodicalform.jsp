@@ -3,43 +3,41 @@
 <%@ page import="periodicals.model.entity.Periodical,periodicals.model.dao.DaoFactory" %>
 <%@ page import="periodicals.model.dao.PeriodicalDao" %>
 <%@ page import="periodicals.model.dao.exceptions.PersistException" %>
-<jsp:useBean id="periodical" class="periodicals.model.entity.Periodical"></jsp:useBean>
+<%@ page import="static periodicals.Constants.SESSION_DAO" %>
+<%@ page import="static periodicals.Constants.PARAM_ID" %>
+<%@ page import="org.apache.log4j.Logger" %>
+<%@ page import="periodicals.model.dao.GenericDao" %>
 <%
-    String id = request.getParameter("id");
-    DaoFactory daoFactory = (DaoFactory) application.getAttribute("periodicals.model");
+    String id = request.getParameter(PARAM_ID);
+    DaoFactory daoFactory = (DaoFactory) application.getAttribute(SESSION_DAO);
     PeriodicalDao periodicalDao = daoFactory.getPeriodicalDao();
     Periodical p = null;
     try {
         p = periodicalDao.getRecordById(Integer.parseInt(id));
     } catch (PersistException e) {
-        e.printStackTrace();
+        Logger LOGGER = Logger.getLogger("editperiodicalform.jsp");
+        LOGGER.error(e);
     }
 %>
 <c:set scope="request" var="title" value="Edit" />
 <%@ include file="header.jsp" %>
-<h1><l:translate key="Edit"/></h1>
-<form action="/edit/periodical" method="post">
-    <input type="hidden" name="id" value="<%= p.getId()%>"/>
-    <table>
-        <tr>
-            <td><l:translate key="Name"/>:</td>
-            <td><input type="text" name="name" value="<%= p.getName()%>"/></td>
-        </tr>
-        <tr>
-            <td><l:translate key="Description"/>:</td>
-            <td><textarea name="description"><%= p.getDescription()%></textarea></td>
-        </tr>
-        <tr>
-            <td><l:translate key="IssuesPerMonth"/>:</td>
-            <td><input type="number" name="issuesPerMonth" value="<%= p.getIssuesPerMonth()%>"/></td>
-        </tr>
-        <tr>
-            <td><l:translate key="Cost"/>:</td>
-            <td><input type="number" name="cost" min="0" max="99999.99" step="0.01" value="<%= p.getCost()%>"/></td>
-        </tr>
-        <tr>
-            <td colspan="2"><input type="submit" value="<l:translate key="Submit"/>"/></td>
-        </tr>
-    </table>
-</form>
-<%@ include file="footer.html" %>
+<div class="col-7">
+    <h1><l:translate key="Edit"/></h1>
+    <form action="edit/periodical" method="post">
+        <input type="hidden" name="id" value="<%= p.getId()%>"/>
+        <div class="form-group">
+            <input type="text" class="form-control" name="name" placeholder="<l:translate key="Name"/>" value="<%= p.getName()%>">
+        </div>
+        <div class="form-group">
+            <textarea class="form-control" name="description" placeholder="<l:translate key="Description"/>"><%= p.getDescription()%></textarea>
+        </div>
+        <div class="form-group">
+            <input type="number" min="1" max="31" step="1" class="form-control" name="issuesPerMonth" placeholder="<l:translate key="IssuesPerMonth"/>" value="<%= p.getIssuesPerMonth()%>">
+        </div>
+        <div class="form-group">
+            <input type="number" min="0.1" max="99999.99" step="0.01" class="form-control" name="cost" placeholder="<l:translate key="Cost"/>" value="<%= p.getCost()%>">
+        </div>
+        <button type="submit" class="btn btn-primary"><l:translate key="Submit"/></button>
+    </form>
+</div>
+<%@ include file="footer.jsp" %>

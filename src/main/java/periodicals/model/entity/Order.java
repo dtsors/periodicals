@@ -1,12 +1,13 @@
 package periodicals.model.entity;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
-@Getter @Setter @ToString
-class Order {
+import java.io.Serializable;
+
+@Getter @Setter @ToString @Builder @EqualsAndHashCode
+public class Order implements Serializable{
     private int id;
     private int userId;
     private int periodicalId;
+    private int count;
 }

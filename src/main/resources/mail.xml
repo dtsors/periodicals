@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="smtp_hostname">smtp.googlemail.com</entry>
+    <entry key="smtp_port">465</entry>
+    <entry key="user_name">periodicals42@gmail.com</entry>
+    <entry key="password">8AXREZeU</entry>
+    <entry key="mailing_threads">4</entry>
+</properties>
