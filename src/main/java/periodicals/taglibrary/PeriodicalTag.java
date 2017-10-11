@@ -9,6 +9,7 @@ import periodicals.model.entity.Periodical;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 
+import static periodicals.Constants.PARAM_ID;
 import static periodicals.Constants.SESSION_DAO;
 
 class PeriodicalTag extends TagSupport {
@@ -17,10 +18,10 @@ class PeriodicalTag extends TagSupport {
 
     @Override
     public int doStartTag() throws JspException {
+        final int id = Integer.parseInt(pageContext.getRequest().getParameter(PARAM_ID));
         DaoFactory daoFactory = (DaoFactory) pageContext.getServletContext().getAttribute(SESSION_DAO);
         PeriodicalDao dao = daoFactory.getPeriodicalDao();
         try {
-            final int id = Integer.parseInt(pageContext.getRequest().getParameter("id"));
             Periodical periodical = dao.getRecordById(id);
             pageContext.getRequest().setAttribute(PERIODICAL, periodical);
         } catch (PersistException e) {

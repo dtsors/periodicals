@@ -21,11 +21,7 @@ public class OrderAdd implements Command {
         final int id = Integer.parseInt(request.getParameter(PARAM_ID));
         final int count = Integer.parseInt(request.getParameter(PARAM_COUNT));
         HttpSession session = request.getSession();
-        int userId = 0;
-        if (session.getAttribute(SESSION_IS_AUTHORIZED) != null) {
-            userId = ((User) session.getAttribute(SESSION_USER)).getId();
-        }
-        Order order = Order.builder().periodicalId(id).count(count).userId(userId).build();
+        Order order = Order.builder().periodicalId(id).count(count).build();
         if (session.getAttribute(SESSION_ORDER) == null) {
             ArrayList<Order> arrayList = new ArrayList<>();
             arrayList.add(order);

@@ -31,7 +31,7 @@ public class ApplicationListener implements ServletContextListener {
             LOGGER.error(">>Can't start DB", e);
         }
         currentTimeMillis = System.currentTimeMillis() - currentTimeMillis;
-        LOGGER.info(">>DB started after " + currentTimeMillis);
+        LOGGER.info(">>DB started after " + currentTimeMillis + " milliseconds");
         new MailProperties();
     }
 

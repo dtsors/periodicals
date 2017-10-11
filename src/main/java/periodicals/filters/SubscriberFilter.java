@@ -9,11 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static periodicals.Constants.PAGE_LOGIN;
 import static periodicals.Constants.PAGE_RESTRICTION;
 import static periodicals.Constants.SESSION_USER;
 
-@WebFilter(filterName = "AccessFilter", urlPatterns = {"/viewusers.jsp", "/editperiodicalform.jsp", "/delete/periodical"})
-public class AccessFilter implements javax.servlet.Filter  {
+@WebFilter(filterName = "SubscriberFilter", urlPatterns = {"/add/payment"})
+public class SubscriberFilter implements Filter  {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -24,10 +25,10 @@ public class AccessFilter implements javax.servlet.Filter  {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         User user = (User) httpRequest.getSession().getAttribute(SESSION_USER);
-        if ((user != null) && Role.ADMIN.toString().contentEquals(user.getRole())) {
+        if (user != null) {
             chain.doFilter(request, response);
         } else {
-            httpResponse.sendRedirect(PAGE_RESTRICTION);
+            httpResponse.sendRedirect(PAGE_LOGIN);
         }
     }
 

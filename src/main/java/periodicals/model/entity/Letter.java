@@ -30,4 +30,10 @@ public class Letter {
         message = "Some message";
         return this;
     }
+
+    public Letter getOrder(String order) {
+        subject = "Your order";
+        message = order;
+        return this;
+    }
 }

@@ -10,6 +10,7 @@ public class Constants {
     public static final String PAGE_ERROR = "/error.jsp";
     public static final String PAGE_SUBSCRIBERS = "/viewusers.jsp";
     public static final String PAGE_RESTRICTION = "/restriction.jsp";
+    public static final String PAGE_LOGIN = "/login.jsp";
 
     public static final String PARAM_TOKEN = "token";
     public static final String PARAM_PASSWORD = "password";
@@ -22,6 +23,7 @@ public class Constants {
     public static final String PARAM_LOGIN = "login";
     public static final String PARAM_LANG = "lang";
     public static final String PARAM_COUNT = "count";
+    public static final String PARAM_ADDRESS = "address";
 
     public static final String SESSION_LANGUAGE = "periodicals.language";
     public static final String SESSION_COMMAND_RESULT = "periodicals.command_result";
@@ -33,20 +35,22 @@ public class Constants {
     public static final String SESSION_PERIODICAL_LIST = "periodicals.periodicalList";
     public static final String SESSION_ORDER = "periodicals.order";
 
-    static final String MSG_DB_ERROR = "Error in data manipulating";
-    static final String MSG_NO_SUCH_USER = "No such user";
-    static final String MSG_WRONG_PASSWORD = "Wrong password";
-    static final String MSG_LOGIN_SUCCESSFUL = "Login is successful";
-    static final String MSG_REGISTRATION_SUCCESSFUL = "Registration is successful";
-    static final String MSG_REGISTRATION_FAULT = "Registration is unsuccessful";
-    static final String MSG_CHECK_MAIL = "Please check your email";
-    static final String MSG_PASSWORD_CHANGED = "Password has been changed";
-    static final String MSG_WRONG_TOKEN = "Wrong token";
-    static final String MSG_LOGOUT = "Good bye";
+    public static final String MSG_DB_ERROR = "Error in data manipulating";
+    public static final String MSG_NO_SUCH_USER = "No such user";
+    public static final String MSG_WRONG_PASSWORD = "Wrong password";
+    public static final String MSG_LOGIN_SUCCESSFUL = "Login is successful";
+    public static final String MSG_REGISTRATION_SUCCESSFUL = "Registration is successful";
+    public static final String MSG_REGISTRATION_FAULT = "Registration is unsuccessful";
+    public static final String MSG_CHECK_MAIL = "Please check your email";
+    public static final String MSG_PASSWORD_CHANGED = "Password has been changed";
+    public static final String MSG_WRONG_TOKEN = "Wrong token";
+    public static final String MSG_LOGOUT = "Good bye";
+    public static final String MSG_BUSKET_IS_EMPTY = "Your busket is empty";
 
-    static final String STATUS_EMPTY = "";
-    static final String STATUS_DANGER = "alert-danger";
-    static final String STATUS_SUCCESS = "alert-success";
+    public static final String STATUS_EMPTY = "";
+    public static final String STATUS_DANGER = "alert-danger";
+    public static final String STATUS_SUCCESS = "alert-success";
+    public static final String STATUS_WARNING = "alert-warning";
     public static final String STATUS_INFO = "alert-info";
 
     public static final String LOG_CAN_NOT_FIND_USER = ">>Can't find user";

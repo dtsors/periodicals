@@ -2,6 +2,7 @@ package periodicals.controller.command;
 
 import periodicals.AlertMessage;
 import periodicals.controller.command.add.OrderAdd;
+import periodicals.controller.command.add.PaymentAdd;
 import periodicals.controller.command.add.PeriodicalAdd;
 import periodicals.controller.command.add.UserAdd;
 import periodicals.controller.command.auth.Login;
@@ -30,6 +31,7 @@ public class CommandFactory {
         commands.put("/add/user", new UserAdd());
         commands.put("/add/periodical", new PeriodicalAdd());
         commands.put("/add/order", new OrderAdd());
+        commands.put("/add/payment", new PaymentAdd());
         commands.put("/edit/user", new UserEdit());
         commands.put("/edit/periodical", new PeriodicalEdit());
         commands.put("/delete/user", new UserDelete());

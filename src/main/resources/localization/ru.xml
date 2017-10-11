@@ -28,4 +28,6 @@
     <entry key="Mail us">Написать</entry>
     <entry key="Basket">Корзина</entry>
     <entry key="Please check your email">Проверьте, пожалуйста, вашу почту</entry>
+    <entry key="Pay">Оплатить</entry>
+    <entry key="Address">Адрес</entry>
 </properties>
