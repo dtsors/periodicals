@@ -48,6 +48,7 @@ public class Constants {
     public static final String MSG_WRONG_TOKEN = "Wrong token";
     public static final String MSG_LOGOUT = "Good bye";
     public static final String MSG_BUSKET_IS_EMPTY = "Your busket is empty";
+    public static final String MSG_CAN_NOT_SEND_MAIL = "Can't send email";
 
     public static final String STATUS_EMPTY = "";
     public static final String STATUS_DANGER = "alert-danger";

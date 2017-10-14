@@ -1,9 +1,9 @@
 package periodicals.controller.command.auth;
 
 import periodicals.AlertMessage;
+import periodicals.HashUtil;
 import periodicals.MailException;
 import periodicals.MailSender;
-import periodicals.HashUtil;
 import periodicals.controller.command.Command;
 import periodicals.controller.command.CommandResult;
 import periodicals.model.dao.DaoFactory;
@@ -31,17 +31,20 @@ public class PasswordRecover implements Command {
             User user = userDao.getRecordByEmail(email);
             if (user != null) {
                 String token = HashUtil.getRandomUuid();
-                user.setToken(token);
+                try {
+                    MailSender.send(new Letter(user.getEmail()).getPasswordRecovery(token));
+                    user.setToken(token);
+                } catch (MailException e) {
+                    alertMessage = AlertMessage.MAIL_ERROR;
+                    user.setToken("");
+                }
                 userDao.update(user);
-                MailSender.send(new Letter(user.getEmail()).getPasswordRecovery(token));
             } else {
                 alertMessage = AlertMessage.NO_SUCH_USER;
             }
         } catch (PersistException e) {
             LOGGER.error(LOG_CAN_NOT_FIND_USER, e);
             alertMessage = AlertMessage.DB_ERROR;
-        } catch (MailException e) {
-            LOGGER.error(e);
         }
         return new CommandResult(PAGE_HOME, alertMessage);
     }
