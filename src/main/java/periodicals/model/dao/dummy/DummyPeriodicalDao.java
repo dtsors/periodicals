@@ -36,4 +36,9 @@ public class DummyPeriodicalDao implements PeriodicalDao {
     public Periodical getRecordById(int id) throws PersistException {
         return null;
     }
+
+    @Override
+    public List<Periodical> getAllRecords(int a, int b) throws PersistException {
+        return null;
+    }
 }

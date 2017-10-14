@@ -1,3 +1,9 @@
+<%@ page import="static periodicals.Constants.*" %>
+<%@ page import="periodicals.model.dao.DaoFactory" %>
+<%@ page import="periodicals.model.dao.PeriodicalDao" %>
+<%@ page import="periodicals.model.entity.Periodical" %>
+<%@ page import="java.util.List" %>
+<%@ page import="periodicals.model.dao.exceptions.PersistException" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="l" uri="/WEB-INF/localizationTag" %>
 <%@ taglib prefix="lists" uri="/WEB-INF/periodicalTag" %>
@@ -47,7 +53,7 @@
                         <div class="form-row">
                             <input type="hidden" name="id" value="${orders.getId()}"/>
                             <div class="col">
-                                <input type="number" class="form-control" min="1" max="9" step="1"  name="count"
+                                <input type="number" class="form-control" min="1" max="9" step="1" name="count"
                                        value="1">
                             </div>
                             <div class="col">
@@ -61,5 +67,20 @@
             </tr>
         </c:forEach>
     </table>
+
+    <%
+        DaoFactory daoFactory = (DaoFactory) pageContext.getServletContext().getAttribute(SESSION_DAO);
+        PeriodicalDao dao = daoFactory.getPeriodicalDao();
+        int count = 1;
+        try {
+            List<Periodical> periodicals = dao.getAllRecords();
+            count = (int) Math.ceil((double)periodicals.size() / PAGINATION_COUNT);
+        } catch (PersistException e) {
+        }
+        for (int i = 1; i <= Math.floor(count); i++) {
+            out.print("<a href='index.jsp?page=" + i + "'>" + i + "</a> ");
+        }
+    %>
 </div>
+<div class="empty-space"></div>
 <%@ include file="footer.jsp" %>

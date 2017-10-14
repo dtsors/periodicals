@@ -7,15 +7,15 @@
         <h1><l:translate key="Registration"/></h1>
         <div class="form-group">
             <label class="form-control-label"><l:translate key="Login"/></label>
-            <input type="text" class="form-control" name="login" placeholder="<l:translate key="Login"/>">
+            <input type="text" required="true" class="form-control" name="login" placeholder="<l:translate key="Login"/>">
         </div>
         <div class="form-group">
             <label><l:translate key="Email"/></label>
-            <input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="<l:translate key="Email"/>">
+            <input type="email" required="true" class="form-control" name="email" aria-describedby="emailHelp" placeholder="<l:translate key="Email"/>">
         </div>
         <div class="form-group">
             <label><l:translate key="Password"/></label>
-            <input type="password" class="form-control" name="password" placeholder="<l:translate key="Password"/>">
+            <input type="password" required="true" class="form-control" name="password" placeholder="<l:translate key="Password"/>">
         </div>
         <button type="submit" class="btn btn-primary"><l:translate key="Submit"/></button>
     </form>

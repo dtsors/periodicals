@@ -8,7 +8,7 @@
         <h1><l:translate key="Update password"/></h1>
         <div class="form-group">
             <label><l:translate key="Password"/></label>
-            <input type="password" class="form-control" name="password" placeholder="<l:translate key="Password"/>">
+            <input type="password" required="true" class="form-control" name="password" placeholder="<l:translate key="Password"/>">
         </div>
         <button type="submit" class="btn btn-primary"><l:translate key="Submit"/></button>
     </form>

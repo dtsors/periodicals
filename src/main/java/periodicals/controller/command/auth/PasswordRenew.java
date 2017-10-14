@@ -1,6 +1,7 @@
 package periodicals.controller.command.auth;
 
 import periodicals.AlertMessage;
+import periodicals.MailException;
 import periodicals.MailSender;
 import periodicals.HashUtil;
 import periodicals.controller.command.Command;
@@ -26,7 +27,7 @@ public class PasswordRenew implements Command {
         final String password = request.getParameter(PARAM_PASSWORD);
         DaoFactory daoFactory = (DaoFactory) request.getServletContext().getAttribute(SESSION_DAO);
         UserDao userDao = daoFactory.getUserDao();
-        AlertMessage alertMessage;
+        AlertMessage alertMessage = AlertMessage.PASSWORD_CHANGED;
         try {
             User user = userDao.getRecordByToken(token);
             if (user != null) {
@@ -34,13 +35,14 @@ public class PasswordRenew implements Command {
                 user.setToken("");
                 userDao.update(user);
                 MailSender.send(new Letter(user.getEmail()).getPasswordChanged());
-                alertMessage = AlertMessage.PASSWORD_CHANGED;
             } else {
                 alertMessage = AlertMessage.WRONG_TOKEN;
             }
         } catch (PersistException e) {
             LOGGER.error(LOG_CAN_NOT_FIND_USER, e);
             alertMessage = AlertMessage.DB_ERROR;
+        } catch (MailException e) {
+            LOGGER.error(e);
         }
         return new CommandResult(PAGE_HOME, alertMessage);
     }

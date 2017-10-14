@@ -34,7 +34,8 @@
 
 <div class="container">
     <form class="form-signin" action="add/payment" method="post">
-        <input type="text" class="form-control" name="address" placeholder="<l:translate key="Address"/>">
+        <input type="text" required="true" class="form-control" name="address" placeholder="<l:translate key="Address"/>">
+        <br>
         <button type="submit" class="btn btn-primary"><l:translate key="Pay"/></button>
     </form>
 </div>

@@ -1,6 +1,7 @@
 package periodicals;
 
 public class Constants {
+    public static final int PAGINATION_COUNT = 3;
     public static final String CHARACTER_ENCODING = "UTF-8";
     public static final String CONTENT_TYPE = "text/html";
     public static final String ENGLISH = "en";
@@ -24,6 +25,7 @@ public class Constants {
     public static final String PARAM_LANG = "lang";
     public static final String PARAM_COUNT = "count";
     public static final String PARAM_ADDRESS = "address";
+    public static final String PARAM_PAGE = "page";
 
     public static final String SESSION_LANGUAGE = "periodicals.language";
     public static final String SESSION_COMMAND_RESULT = "periodicals.command_result";

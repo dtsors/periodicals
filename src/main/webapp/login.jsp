@@ -6,10 +6,10 @@
     <form class="form-signin" action="login" method="post">
         <h1><l:translate key="SignIn"/></h1>
         <div class="form-group">
-            <input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="<l:translate key="Email"/>">
+            <input type="email" required="true" class="form-control" name="email" aria-describedby="emailHelp" placeholder="<l:translate key="Email"/>">
         </div>
         <div class="form-group">
-            <input type="password" class="form-control" name="password" placeholder="<l:translate key="Password"/>">
+            <input type="password" required="true" class="form-control" name="password" placeholder="<l:translate key="Password"/>">
         </div>
         <button type="submit" class="btn btn-primary"><l:translate key="Submit"/></button>
     </form>

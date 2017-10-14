@@ -6,7 +6,7 @@
     <form class="form-signin" action="recover" method="post">
         <h1><l:translate key="Recover password"/></h1>
         <div class="form-group">
-            <input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="<l:translate key="Email"/>">
+            <input type="email" required="true" class="form-control" name="email" aria-describedby="emailHelp" placeholder="<l:translate key="Email"/>">
         </div>
         <button type="submit" class="btn btn-primary"><l:translate key="Submit"/></button>
     </form>

@@ -1,9 +1,6 @@
 package periodicals.controller.command.add;
 
-import periodicals.AlertMessage;
-import periodicals.MailSender;
-import periodicals.HashUtil;
-import periodicals.Role;
+import periodicals.*;
 import periodicals.controller.command.Command;
 import periodicals.controller.command.CommandResult;
 import periodicals.model.dao.DaoFactory;
@@ -42,7 +39,11 @@ public class UserAdd implements Command {
         }
         AlertMessage alertMessage;
         if (status > 0) {
-            MailSender.send(new Letter(email).getRegistrationSuccessful(login));
+            try {
+                MailSender.send(new Letter(email).getRegistrationSuccessful(login));
+            } catch (MailException e) {
+                LOGGER.error(e);
+            }
             request.getSession().setAttribute(SESSION_IS_AUTHORIZED, "true");
             request.getSession().setAttribute(SESSION_USER, user);
             alertMessage = AlertMessage.REGISTRATION_SUCCESSFUL;

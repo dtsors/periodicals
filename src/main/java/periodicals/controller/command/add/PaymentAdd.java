@@ -1,5 +1,6 @@
 package periodicals.controller.command.add;
 
+import periodicals.MailException;
 import periodicals.MailSender;
 import periodicals.controller.command.Command;
 import periodicals.controller.command.CommandResult;
@@ -27,8 +28,13 @@ public class PaymentAdd implements Command {
             for (Order order : orderList) {
                 orderMessage.append(order.toString() + "\r\n");
             }
+            orderMessage.append(address);
             User user = (User) session.getAttribute(SESSION_USER);
-            MailSender.send(new Letter(user.getEmail()).getOrder(orderMessage.toString()));
+            try {
+                MailSender.send(new Letter(user.getEmail()).getOrder(orderMessage.toString()));
+            } catch (MailException e) {
+                LOGGER.error(e);
+            }
             session.removeAttribute(SESSION_ORDER);
             return new CommandResult(PAGE_HOME, STATUS_SUCCESS, MSG_CHECK_MAIL);
         }

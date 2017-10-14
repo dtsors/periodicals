@@ -24,9 +24,13 @@ public class MailSender {
     private static final String USER_NAME = getUserName();
     private static final String PASSWORD = getPassword();
 
-    public static void send(Letter letter) {
-        Mail mail = new Mail(letter.getSubject(), letter.getMessage(), letter.getRecipient());
-        executor.execute(mail);
+    public static void send(Letter letter) throws MailException {
+        try {
+            Mail mail = new Mail(letter.getSubject(), letter.getMessage(), letter.getRecipient());
+            executor.execute(mail);
+        } catch (Exception e){
+            throw new MailException(e);
+        }
     }
 
     @Setter
