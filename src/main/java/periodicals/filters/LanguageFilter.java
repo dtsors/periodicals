@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 import static periodicals.Constants.*;
-import static periodicals.Constants.SESSION_LANGUAGE;
 
 @WebFilter(filterName = "LanguageFilter", urlPatterns = {"/add/*", "/edit/*", "/delete/*", "*.jsp"})
 public class LanguageFilter implements javax.servlet.Filter {

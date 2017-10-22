@@ -3,7 +3,6 @@ package periodicals.controller.command.add;
 import periodicals.*;
 import periodicals.controller.command.Command;
 import periodicals.controller.command.CommandResult;
-import periodicals.model.dao.DaoFactory;
 import periodicals.model.dao.UserDao;
 import periodicals.model.dao.exceptions.PersistException;
 import periodicals.model.entity.Letter;
@@ -23,8 +22,7 @@ public class UserAdd implements Command {
         final String login = request.getParameter(PARAM_LOGIN);
         final String email = request.getParameter(PARAM_EMAIL);
         final String password = request.getParameter(PARAM_PASSWORD);
-        DaoFactory daoFactory = (DaoFactory) request.getServletContext().getAttribute(APPLICATION_DAO);
-        UserDao userDao = daoFactory.getUserDao();
+        UserDao userDao = (UserDao) request.getServletContext().getAttribute(USER_DAO);
         User user = new User();
         user.setLogin(login);
         user.setPassword(HashUtil.hashPassword(password));

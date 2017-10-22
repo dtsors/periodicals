@@ -3,7 +3,6 @@ package periodicals.controller.command.add;
 import periodicals.controller.command.Command;
 import periodicals.controller.command.CommandResult;
 import periodicals.model.entity.Order;
-import periodicals.model.entity.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -27,7 +26,7 @@ public class OrderAdd implements Command {
             arrayList.add(order);
             session.setAttribute(SESSION_ORDER, arrayList);
         } else {
-            ArrayList<Order> arrayList = (ArrayList<Order>) session.getAttribute(SESSION_ORDER);
+            ArrayList<Order> arrayList = (ArrayList<Order>) session.getAttribute(SESSION_ORDER);//TODO
             arrayList.add(order);
         }
         final String message = "Item has been added";

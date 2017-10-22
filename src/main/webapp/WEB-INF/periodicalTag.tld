@@ -8,25 +8,28 @@
     <tlib-version>1.0</tlib-version>
     <short-name>lists</short-name>
     <uri>/WEB-INF/periodicalTag</uri>
+
     <tag>
-        <name>getPeriodicals</name>
-        <tag-class>periodicals.taglibrary.PeriodicalsTag</tag-class>
-        <body-content>empty</body-content>
-    </tag>
-    <tag>
-        <name>getUsers</name>
-        <tag-class>periodicals.taglibrary.UsersTag</tag-class>
+        <name>getPeriodical</name>
+        <tag-class>periodicals.taglibrary.PeriodicalTag</tag-class>
         <body-content>empty</body-content>
     </tag>
 
     <tag>
-        <name>getPeriodical</name>
-        <tag-class>periodicals.taglibrary.PeriodicalsTag</tag-class>
+        <name>getPeriodicalList</name>
+        <tag-class>periodicals.taglibrary.PeriodicalListTag</tag-class>
         <body-content>empty</body-content>
     </tag>
+
     <tag>
         <name>getUser</name>
-        <tag-class>periodicals.taglibrary.UsersTag</tag-class>
+        <tag-class>periodicals.taglibrary.UserTag</tag-class>
+        <body-content>empty</body-content>
+    </tag>
+
+    <tag>
+        <name>getUserList</name>
+        <tag-class>periodicals.taglibrary.UserListTag</tag-class>
         <body-content>empty</body-content>
     </tag>
 

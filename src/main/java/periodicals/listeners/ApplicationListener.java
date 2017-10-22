@@ -5,6 +5,7 @@ import periodicals.MailSender;
 import periodicals.model.config.MailProperties;
 import periodicals.model.dao.DaoFactory;
 import periodicals.model.dao.PeriodicalDao;
+import periodicals.model.dao.UserDao;
 import periodicals.model.dao.exceptions.PersistException;
 import periodicals.model.dao.mysql.MySqlDaoFactory;
 
@@ -13,8 +14,7 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 import java.util.concurrent.TimeUnit;
 
-import static periodicals.Constants.APPLICATION_DAO;
-import static periodicals.Constants.APPLICATION_LOGGER;
+import static periodicals.Constants.*;
 
 @WebListener
 public class ApplicationListener implements ServletContextListener {
@@ -25,10 +25,14 @@ public class ApplicationListener implements ServletContextListener {
         LOGGER.info(">>App started");
         long currentTimeMillis = System.currentTimeMillis();
         final DaoFactory daoFactory = new MySqlDaoFactory();
+        final PeriodicalDao periodicalDao = daoFactory.getPeriodicalDao();
+        final UserDao userDao = daoFactory.getUserDao();
         servletContextEvent.getServletContext().setAttribute(APPLICATION_DAO, daoFactory);
-        PeriodicalDao periodicalDao = daoFactory.getPeriodicalDao();
+        servletContextEvent.getServletContext().setAttribute(PERIODICAL_DAO, periodicalDao);
+        servletContextEvent.getServletContext().setAttribute(USER_DAO, userDao);
         try {
             periodicalDao.getAllRecords();
+            userDao.getAllRecords();
         } catch (PersistException e) {
             LOGGER.error(">>Can't start DB", e);
         }

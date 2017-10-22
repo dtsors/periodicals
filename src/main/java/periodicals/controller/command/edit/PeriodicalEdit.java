@@ -4,7 +4,6 @@ import periodicals.AlertMessage;
 import periodicals.controller.command.Command;
 import periodicals.controller.command.CommandResult;
 import periodicals.controller.command.CommandUtil;
-import periodicals.model.dao.DaoFactory;
 import periodicals.model.dao.PeriodicalDao;
 import periodicals.model.dao.exceptions.PersistException;
 import periodicals.model.entity.Periodical;
@@ -25,8 +24,7 @@ public class PeriodicalEdit implements Command {
         final String description = request.getParameter(PARAM_DESCRIPTION);
         final int issuesPerMonth = Integer.parseInt(request.getParameter(PARAM_ISSUES_PER_MONTH));
         final String cost = request.getParameter(PARAM_COST);
-        DaoFactory daoFactory = (DaoFactory) request.getServletContext().getAttribute(APPLICATION_DAO);
-        PeriodicalDao periodicalDao = daoFactory.getPeriodicalDao();
+        PeriodicalDao periodicalDao = (PeriodicalDao) request.getServletContext().getAttribute(PERIODICAL_DAO);
         int status = -1;
         try {
             Periodical periodical = periodicalDao.getRecordById(id);

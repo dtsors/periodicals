@@ -24,9 +24,9 @@ public class PaymentAdd implements Command {
         String address = request.getParameter(PARAM_ADDRESS);
         StringBuilder orderMessage = new StringBuilder("Your order is:\r\n");
         if ((session.getAttribute(SESSION_ORDER) != null) &&(session.getAttribute(SESSION_USER) != null)) {
-            ArrayList<Order> orderList = (ArrayList<Order>) session.getAttribute(SESSION_ORDER);
+            ArrayList<Order> orderList = (ArrayList<Order>) session.getAttribute(SESSION_ORDER);//TODO
             for (Order order : orderList) {
-                orderMessage.append(order.toString() + "\r\n");
+                orderMessage.append(order.toString()).append("\r\n");
             }
             orderMessage.append(address);
             User user = (User) session.getAttribute(SESSION_USER);

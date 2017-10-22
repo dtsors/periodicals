@@ -1,11 +1,9 @@
-<%@ page import="static periodicals.Constants.*" %>
-<%@ page import="periodicals.model.dao.DaoFactory" %>
-<%@ page import="periodicals.model.dao.PeriodicalDao" %>
-<%@ page import="periodicals.model.dao.exceptions.PersistException" %>
-<%@ page import="java.util.Enumeration" %>
+<%--<%@ page import="java.util.Enumeration" %>--%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="l" uri="/WEB-INF/localizationTag" %>
 <%@ taglib prefix="lists" uri="/WEB-INF/periodicalTag" %>
+<%@ taglib prefix="pagination" uri="/WEB-INF/paginationTag" %>
+<lists:getPeriodicalList/>
 <c:set scope="request" var="title" value="Periodicals"/>
 <%@ include file="header.jsp" %>
 <div class="col-12">
@@ -23,8 +21,7 @@
             <th><l:translate key="Count"/></th>
         </tr>
         </thead>
-        <lists:getPeriodicals/>
-        <c:forEach items="${periodicalList}" var="orders">
+        <c:forEach items="${periodicals_periodicalList}" var="orders">
             <tr>
                 <td scope="row">${orders.getId()}</td>
                 <td>${orders.getName()}</td>
@@ -66,27 +63,15 @@
             </tr>
         </c:forEach>
     </table>
-
-    <%
-        DaoFactory daoFactory = (DaoFactory) pageContext.getServletContext().getAttribute(APPLICATION_DAO);
-        PeriodicalDao dao = daoFactory.getPeriodicalDao();
-        int count = 1;
-        try {
-            count = (int) Math.ceil((double)dao.getCount() / PAGINATION_COUNT);
-        } catch (PersistException e) {
-        }
-        for (int i = 1; i <= Math.floor(count); i++) {
-            out.print("<a href='index.jsp?page=" + i + "'>" + i + "</a> ");
-        }
-    %>
+    <pagination:pagination/>
 </div>
-<%
+<%--<%
     out.write("RequestAttributes");
     Enumeration<String> parameterNames = request.getAttributeNames();
     while (parameterNames.hasMoreElements()) {
-        out.write(parameterNames.nextElement());
+        out.write(parameterNames.nextElement() + "<br>");
     }
-    out.write("RequestAttributes");
+    out.write("RequestAttributes<br><br>");
 
     out.write("SessionAttributes<br>");
     parameterNames = request.getSession().getAttributeNames();
@@ -103,6 +88,6 @@
         out.write(s + "<br>");
     }
     out.write("AppAttributes<br>");
-%>
+%>--%>
 <div class="empty-space"></div>
 <%@ include file="footer.jsp" %>

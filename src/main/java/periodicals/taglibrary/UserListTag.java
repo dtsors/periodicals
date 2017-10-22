@@ -1,7 +1,7 @@
 package periodicals.taglibrary;
 
 import org.apache.log4j.Logger;
-import periodicals.model.dao.DaoFactory;
+import periodicals.Constants;
 import periodicals.model.dao.UserDao;
 import periodicals.model.dao.exceptions.PersistException;
 import periodicals.model.entity.User;
@@ -10,19 +10,17 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 import java.util.List;
 
-import static periodicals.Constants.APPLICATION_DAO;
+import static periodicals.Constants.USER_DAO;
 
-public class UsersTag extends TagSupport {
-    private static final Logger LOGGER = Logger.getLogger(UsersTag.class);
-    private static final String USERSLIST = "userList";
+public class UserListTag extends TagSupport {
+    private static final Logger LOGGER = Logger.getLogger(UserListTag.class);
 
     @Override
     public int doStartTag() throws JspException {
-        DaoFactory daoFactory = (DaoFactory) pageContext.getServletContext().getAttribute(APPLICATION_DAO);
-        UserDao dao = daoFactory.getUserDao();
+        UserDao dao = (UserDao) pageContext.getServletContext().getAttribute(USER_DAO);
         try {
             List<User> users = dao.getAllRecords();
-            pageContext.getRequest().setAttribute(USERSLIST, users);
+            pageContext.getRequest().setAttribute(Constants.TAG_USERS_LIST, users);
         } catch (PersistException e) {
             LOGGER.error(e);
         }

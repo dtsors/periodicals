@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="l" uri="/WEB-INF/localizationTag" %>
 <%@ taglib prefix="lists" uri="/WEB-INF/periodicalTag" %>
+<lists:getUserList/>
 <c:set scope="request" var="title" value="Subscribers"/>
 <%@ include file="header.jsp" %>
 <div class="col-7">
@@ -15,8 +16,7 @@
             <th></th>
         </tr>
         </thead>
-        <lists:getUsers/>
-        <c:forEach items="${userList}" var="user">
+        <c:forEach items="${periodicals_userList}" var="user">
             <tr>
                 <td scope="row">${user.getId()}</td>
                 <td>${user.getLogin()}</td>

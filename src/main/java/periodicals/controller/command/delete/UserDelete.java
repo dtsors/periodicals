@@ -4,7 +4,6 @@ import periodicals.AlertMessage;
 import periodicals.controller.command.Command;
 import periodicals.controller.command.CommandResult;
 import periodicals.controller.command.CommandUtil;
-import periodicals.model.dao.DaoFactory;
 import periodicals.model.dao.UserDao;
 import periodicals.model.dao.exceptions.PersistException;
 
@@ -20,8 +19,7 @@ public class UserDelete implements Command {
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         final int id = Integer.parseInt(request.getParameter(PARAM_ID));
-        DaoFactory daoFactory = (DaoFactory) request.getServletContext().getAttribute(APPLICATION_DAO);
-        UserDao userDao = daoFactory.getUserDao();
+        UserDao userDao = (UserDao) request.getServletContext().getAttribute(USER_DAO);
         int status = -1;
         try {
             status = userDao.delete(id);

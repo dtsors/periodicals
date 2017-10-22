@@ -4,7 +4,6 @@ import periodicals.AlertMessage;
 import periodicals.HashUtil;
 import periodicals.controller.command.Command;
 import periodicals.controller.command.CommandResult;
-import periodicals.model.dao.DaoFactory;
 import periodicals.model.dao.UserDao;
 import periodicals.model.dao.exceptions.PersistException;
 import periodicals.model.entity.User;
@@ -21,8 +20,7 @@ public class Login implements Command {
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = request.getParameter(PARAM_EMAIL);
         String password = request.getParameter(PARAM_PASSWORD);
-        DaoFactory daoFactory = (DaoFactory) request.getServletContext().getAttribute(APPLICATION_DAO);
-        UserDao userDao = daoFactory.getUserDao();
+        UserDao userDao = (UserDao) request.getServletContext().getAttribute(USER_DAO);
         AlertMessage alertMessage;
         try {
             User user = userDao.getRecordByEmail(email);

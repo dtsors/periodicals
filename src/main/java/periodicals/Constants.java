@@ -30,17 +30,26 @@ public final class Constants {
     public static final String PARAM_ADDRESS = "address";
     public static final String PARAM_PAGE = "page";
 
-    public static final String SESSION_LANGUAGE = "periodicals.language";
-    public static final String SESSION_COMMAND_RESULT = "periodicals.command_result";
-    public static final String SESSION_IS_AUTHORIZED = "periodicals.isAuthorized";
-    public static final String SESSION_USER = "periodicals.user";
-    public static final String SESSION_USER_LIST = "periodicals.userList";
-    public static final String SESSION_PERIODICAL = "periodicals.periodical";
-    public static final String SESSION_PERIODICAL_LIST = "periodicals.periodicalList";
-    public static final String SESSION_ORDER = "periodicals.order";
+    private static final String PREFIX = "periodicals_";
 
-    public static final String APPLICATION_DAO = "periodicals.dao";
-    public static final String APPLICATION_LOGGER = "periodicals.logger";
+    public static final String TAG_PERIODICAL = PREFIX + "periodical";
+    public static final String TAG_PERIODICALS_LIST = PREFIX + "periodicalList";
+    public static final String TAG_USER = PREFIX + "user";
+    public static final String TAG_USERS_LIST = PREFIX + "userList";
+
+    public static final String SESSION_LANGUAGE = PREFIX + "language";
+    public static final String SESSION_COMMAND_RESULT = PREFIX + "command_result";
+    public static final String SESSION_IS_AUTHORIZED = PREFIX + "isAuthorized";
+    public static final String SESSION_USER = PREFIX + "user";
+    public static final String SESSION_USER_LIST = PREFIX + "userList";
+    public static final String SESSION_PERIODICAL = PREFIX + "periodical";
+    public static final String SESSION_PERIODICAL_LIST = PREFIX + "periodicalList";
+    public static final String SESSION_ORDER = PREFIX + "order";
+
+    public static final String APPLICATION_DAO = PREFIX + "applicationDao";
+    public static final String PERIODICAL_DAO = PREFIX + "periodicalDao";
+    public static final String USER_DAO = PREFIX + "userDao";
+    public static final String APPLICATION_LOGGER = PREFIX + "logger";
 
     public static final String MSG_DB_ERROR = "Error in data manipulating";
     public static final String MSG_NO_SUCH_USER = "No such user";

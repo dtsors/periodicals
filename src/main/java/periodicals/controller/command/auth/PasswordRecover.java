@@ -6,7 +6,6 @@ import periodicals.MailException;
 import periodicals.MailSender;
 import periodicals.controller.command.Command;
 import periodicals.controller.command.CommandResult;
-import periodicals.model.dao.DaoFactory;
 import periodicals.model.dao.UserDao;
 import periodicals.model.dao.exceptions.PersistException;
 import periodicals.model.entity.Letter;
@@ -24,8 +23,7 @@ public class PasswordRecover implements Command {
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = request.getParameter(PARAM_EMAIL);
-        DaoFactory daoFactory = (DaoFactory) request.getServletContext().getAttribute(APPLICATION_DAO);
-        UserDao userDao = daoFactory.getUserDao();
+        UserDao userDao = (UserDao) request.getServletContext().getAttribute(USER_DAO);
         AlertMessage alertMessage = AlertMessage.CHECK_MAIL;
         try {
             User user = userDao.getRecordByEmail(email);

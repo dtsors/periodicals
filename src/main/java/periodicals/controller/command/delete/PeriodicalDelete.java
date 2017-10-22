@@ -4,7 +4,6 @@ import periodicals.AlertMessage;
 import periodicals.controller.command.Command;
 import periodicals.controller.command.CommandResult;
 import periodicals.controller.command.CommandUtil;
-import periodicals.model.dao.DaoFactory;
 import periodicals.model.dao.PeriodicalDao;
 import periodicals.model.dao.exceptions.PersistException;
 
@@ -21,8 +20,7 @@ public class PeriodicalDelete implements Command {
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         final int id = Integer.parseInt(request.getParameter(PARAM_ID));
-        DaoFactory daoFactory = (DaoFactory) request.getServletContext().getAttribute(APPLICATION_DAO);
-        PeriodicalDao periodicalDao = daoFactory.getPeriodicalDao();
+        PeriodicalDao periodicalDao = (PeriodicalDao) request.getServletContext().getAttribute(PERIODICAL_DAO);
         int status = -1;
         try {
             status = periodicalDao.delete(id);
