@@ -1,15 +1,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="l" uri="/WEB-INF/localizationTag" %>
-<%@ page import="periodicals.model.entity.Periodical,periodicals.model.dao.DaoFactory" %>
+<%@ page import="org.apache.log4j.Logger,periodicals.model.dao.DaoFactory" %>
 <%@ page import="periodicals.model.dao.PeriodicalDao" %>
 <%@ page import="periodicals.model.dao.exceptions.PersistException" %>
-<%@ page import="static periodicals.Constants.SESSION_DAO" %>
+<%@ page import="static periodicals.Constants.APPLICATION_DAO" %>
 <%@ page import="static periodicals.Constants.PARAM_ID" %>
-<%@ page import="org.apache.log4j.Logger" %>
-<%@ page import="periodicals.model.dao.GenericDao" %>
+<%@ page import="periodicals.model.entity.Periodical" %>
 <%
     String id = request.getParameter(PARAM_ID);
-    DaoFactory daoFactory = (DaoFactory) application.getAttribute(SESSION_DAO);
+    DaoFactory daoFactory = (DaoFactory) application.getAttribute(APPLICATION_DAO);
     PeriodicalDao periodicalDao = daoFactory.getPeriodicalDao();
     Periodical p = null;
     try {

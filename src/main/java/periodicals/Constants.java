@@ -1,6 +1,9 @@
 package periodicals;
 
-public class Constants {
+public final class Constants {
+    private Constants() {
+    }
+
     public static final int PAGINATION_COUNT = 3;
     public static final String CHARACTER_ENCODING = "UTF-8";
     public static final String CONTENT_TYPE = "text/html";
@@ -30,12 +33,14 @@ public class Constants {
     public static final String SESSION_LANGUAGE = "periodicals.language";
     public static final String SESSION_COMMAND_RESULT = "periodicals.command_result";
     public static final String SESSION_IS_AUTHORIZED = "periodicals.isAuthorized";
-    public static final String SESSION_DAO = "periodicals.dao";
     public static final String SESSION_USER = "periodicals.user";
     public static final String SESSION_USER_LIST = "periodicals.userList";
     public static final String SESSION_PERIODICAL = "periodicals.periodical";
     public static final String SESSION_PERIODICAL_LIST = "periodicals.periodicalList";
     public static final String SESSION_ORDER = "periodicals.order";
+
+    public static final String APPLICATION_DAO = "periodicals.dao";
+    public static final String APPLICATION_LOGGER = "periodicals.logger";
 
     public static final String MSG_DB_ERROR = "Error in data manipulating";
     public static final String MSG_NO_SUCH_USER = "No such user";

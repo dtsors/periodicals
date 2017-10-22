@@ -1,9 +1,8 @@
 <%@ page import="static periodicals.Constants.*" %>
 <%@ page import="periodicals.model.dao.DaoFactory" %>
 <%@ page import="periodicals.model.dao.PeriodicalDao" %>
-<%@ page import="periodicals.model.entity.Periodical" %>
-<%@ page import="java.util.List" %>
 <%@ page import="periodicals.model.dao.exceptions.PersistException" %>
+<%@ page import="java.util.Enumeration" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="l" uri="/WEB-INF/localizationTag" %>
 <%@ taglib prefix="lists" uri="/WEB-INF/periodicalTag" %>
@@ -69,12 +68,11 @@
     </table>
 
     <%
-        DaoFactory daoFactory = (DaoFactory) pageContext.getServletContext().getAttribute(SESSION_DAO);
+        DaoFactory daoFactory = (DaoFactory) pageContext.getServletContext().getAttribute(APPLICATION_DAO);
         PeriodicalDao dao = daoFactory.getPeriodicalDao();
         int count = 1;
         try {
-            List<Periodical> periodicals = dao.getAllRecords();
-            count = (int) Math.ceil((double)periodicals.size() / PAGINATION_COUNT);
+            count = (int) Math.ceil((double)dao.getCount() / PAGINATION_COUNT);
         } catch (PersistException e) {
         }
         for (int i = 1; i <= Math.floor(count); i++) {
@@ -82,5 +80,29 @@
         }
     %>
 </div>
+<%
+    out.write("RequestAttributes");
+    Enumeration<String> parameterNames = request.getAttributeNames();
+    while (parameterNames.hasMoreElements()) {
+        out.write(parameterNames.nextElement());
+    }
+    out.write("RequestAttributes");
+
+    out.write("SessionAttributes<br>");
+    parameterNames = request.getSession().getAttributeNames();
+    while (parameterNames.hasMoreElements()) {
+        String s = parameterNames.nextElement();
+        out.write(s + "<br>");
+    }
+    out.write("SessionAttributes<br><br>");
+
+    out.write("AppAttributes<br>");
+    parameterNames = request.getServletContext().getAttributeNames();
+    while (parameterNames.hasMoreElements()) {
+        String s = parameterNames.nextElement();
+        out.write(s + "<br>");
+    }
+    out.write("AppAttributes<br>");
+%>
 <div class="empty-space"></div>
 <%@ include file="footer.jsp" %>

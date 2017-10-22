@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import static periodicals.Constants.*;
-import static periodicals.Constants.SESSION_DAO;
 
 public class PeriodicalAdd implements Command{
 
@@ -25,7 +24,7 @@ public class PeriodicalAdd implements Command{
         final String description = request.getParameter(PARAM_DESCRIPTION);
         final int issuesPerMonth = Integer.parseInt(request.getParameter(PARAM_ISSUES_PER_MONTH));
         final String cost = request.getParameter(PARAM_COST);
-        DaoFactory daoFactory = (DaoFactory) request.getServletContext().getAttribute(SESSION_DAO);
+        DaoFactory daoFactory = (DaoFactory) request.getServletContext().getAttribute(APPLICATION_DAO);
         PeriodicalDao periodicalDao = daoFactory.getPeriodicalDao();
         Periodical periodical = new Periodical();
         periodical.setName(name);

@@ -1,9 +1,9 @@
 package periodicals.controller.command.auth;
 
 import periodicals.AlertMessage;
+import periodicals.HashUtil;
 import periodicals.MailException;
 import periodicals.MailSender;
-import periodicals.HashUtil;
 import periodicals.controller.command.Command;
 import periodicals.controller.command.CommandResult;
 import periodicals.model.dao.DaoFactory;
@@ -25,7 +25,7 @@ public class PasswordRenew implements Command {
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         final String token = request.getParameter(PARAM_TOKEN);
         final String password = request.getParameter(PARAM_PASSWORD);
-        DaoFactory daoFactory = (DaoFactory) request.getServletContext().getAttribute(SESSION_DAO);
+        DaoFactory daoFactory = (DaoFactory) request.getServletContext().getAttribute(APPLICATION_DAO);
         UserDao userDao = daoFactory.getUserDao();
         AlertMessage alertMessage = AlertMessage.PASSWORD_CHANGED;
         try {

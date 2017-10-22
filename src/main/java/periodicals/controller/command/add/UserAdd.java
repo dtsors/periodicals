@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import static periodicals.Constants.*;
-import static periodicals.Constants.SESSION_DAO;
 
 public class UserAdd implements Command {
 
@@ -24,7 +23,7 @@ public class UserAdd implements Command {
         final String login = request.getParameter(PARAM_LOGIN);
         final String email = request.getParameter(PARAM_EMAIL);
         final String password = request.getParameter(PARAM_PASSWORD);
-        DaoFactory daoFactory = (DaoFactory) request.getServletContext().getAttribute(SESSION_DAO);
+        DaoFactory daoFactory = (DaoFactory) request.getServletContext().getAttribute(APPLICATION_DAO);
         UserDao userDao = daoFactory.getUserDao();
         User user = new User();
         user.setLogin(login);

@@ -25,7 +25,7 @@ public class PeriodicalEdit implements Command {
         final String description = request.getParameter(PARAM_DESCRIPTION);
         final int issuesPerMonth = Integer.parseInt(request.getParameter(PARAM_ISSUES_PER_MONTH));
         final String cost = request.getParameter(PARAM_COST);
-        DaoFactory daoFactory = (DaoFactory) request.getServletContext().getAttribute(SESSION_DAO);
+        DaoFactory daoFactory = (DaoFactory) request.getServletContext().getAttribute(APPLICATION_DAO);
         PeriodicalDao periodicalDao = daoFactory.getPeriodicalDao();
         int status = -1;
         try {

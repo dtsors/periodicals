@@ -1,8 +1,8 @@
 package periodicals.model.dao.dummy;
 
 import periodicals.model.dao.PeriodicalDao;
-import periodicals.model.entity.Periodical;
 import periodicals.model.dao.exceptions.PersistException;
+import periodicals.model.entity.Periodical;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,5 +40,10 @@ public class DummyPeriodicalDao implements PeriodicalDao {
     @Override
     public List<Periodical> getAllRecords(int a, int b) throws PersistException {
         return null;
+    }
+
+    @Override
+    public int getCount() throws PersistException {
+        return 0;
     }
 }

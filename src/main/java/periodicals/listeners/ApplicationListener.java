@@ -13,17 +13,19 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 import java.util.concurrent.TimeUnit;
 
-import static periodicals.Constants.SESSION_DAO;
+import static periodicals.Constants.APPLICATION_DAO;
+import static periodicals.Constants.APPLICATION_LOGGER;
 
 @WebListener
 public class ApplicationListener implements ServletContextListener {
-    private static final Logger LOGGER = Logger.getLogger(ApplicationListener.class);
 
     public void contextInitialized(ServletContextEvent servletContextEvent) {
+        final Logger LOGGER = Logger.getLogger(ApplicationListener.class);
+        servletContextEvent.getServletContext().setAttribute(APPLICATION_LOGGER, LOGGER);
         LOGGER.info(">>App started");
         long currentTimeMillis = System.currentTimeMillis();
         final DaoFactory daoFactory = new MySqlDaoFactory();
-        servletContextEvent.getServletContext().setAttribute(SESSION_DAO, daoFactory);
+        servletContextEvent.getServletContext().setAttribute(APPLICATION_DAO, daoFactory);
         PeriodicalDao periodicalDao = daoFactory.getPeriodicalDao();
         try {
             periodicalDao.getAllRecords();
@@ -36,7 +38,8 @@ public class ApplicationListener implements ServletContextListener {
     }
 
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
-        DaoFactory daoFactory = (DaoFactory) servletContextEvent.getServletContext().getAttribute(SESSION_DAO);
+        final Logger LOGGER = ((Logger) servletContextEvent.getServletContext().getAttribute(APPLICATION_LOGGER));
+        DaoFactory daoFactory = (DaoFactory) servletContextEvent.getServletContext().getAttribute(APPLICATION_DAO);
         daoFactory.close();
         MailSender.getExecutor().shutdown();
         try {

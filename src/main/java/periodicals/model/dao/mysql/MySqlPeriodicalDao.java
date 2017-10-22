@@ -70,30 +70,20 @@ public class MySqlPeriodicalDao implements PeriodicalDao {
     @Override
     public List<Periodical> getAllRecords() throws PersistException {
         List<Periodical> periodicals = new ArrayList<>();
-        String query = "SELECT * FROM " + TABLE_NAME;
-        try (final Connection connection = MySqlCP.getInstance().getConnection();
-             final PreparedStatement statement = connection.prepareStatement(query);
-             final ResultSet resultSet = statement.executeQuery()) {
-            while (resultSet.next()) {
-                Periodical periodical = new Periodical();
-                periodical.setId(resultSet.getInt("id"));
-                periodical.setName(resultSet.getString("name"));
-                periodical.setDescription(resultSet.getString("description"));
-                periodical.setIssuesPerMonth(resultSet.getInt("issuesPerMonth"));
-                periodical.setCost(resultSet.getBigDecimal("cost").toString());
-                periodicals.add(periodical);
-            }
-        } catch (SQLException e) {
-            LOGGER.error(">>Can't read batch from " + TABLE_NAME, e);
-            throw new PersistException(e);
-        }
+        String query = "SELECT id, name, description, issuesPerMonth, cost FROM " + TABLE_NAME;
+        getAllRecordsDublicated(periodicals, query);
         return periodicals;
     }
 
     @Override
     public List<Periodical> getAllRecords(int a, int b) throws PersistException {
         List<Periodical> periodicals = new ArrayList<>();
-        String query = "SELECT * FROM " + TABLE_NAME + " order by id LIMIT " + a + ", " + b;
+        String query = "SELECT id, name, description, issuesPerMonth, cost FROM " + TABLE_NAME + " order by id LIMIT " + a + ", " + b;
+        getAllRecordsDublicated(periodicals, query);
+        return periodicals;
+    }
+
+    private void getAllRecordsDublicated(List<Periodical> periodicals, String query) throws PersistException {
         try (final Connection connection = MySqlCP.getInstance().getConnection();
              final PreparedStatement statement = connection.prepareStatement(query);
              final ResultSet resultSet = statement.executeQuery()) {
@@ -110,13 +100,29 @@ public class MySqlPeriodicalDao implements PeriodicalDao {
             LOGGER.error(">>Can't read batch from " + TABLE_NAME, e);
             throw new PersistException(e);
         }
-        return periodicals;
+    }
+
+    @Override
+    public int getCount() throws PersistException {
+        int count = 0;
+        String query = "SELECT count(id) FROM " + TABLE_NAME;
+        try (final Connection connection = MySqlCP.getInstance().getConnection();
+             final PreparedStatement statement = connection.prepareStatement(query);
+             final ResultSet resultSet = statement.executeQuery()) {
+            if (resultSet.next()) {
+                count = resultSet.getInt(1);
+            }
+        } catch (SQLException e) {
+            LOGGER.error(">>Can't get count from " + TABLE_NAME, e);
+            throw new PersistException(e);
+        }
+        return count;
     }
 
     @Override
     public Periodical getRecordById(final int id) throws PersistException {
         Periodical periodical = null;
-        String query = "SELECT * FROM " + TABLE_NAME + " WHERE id=?";
+        String query = "SELECT id, name, description, issuesPerMonth, cost FROM " + TABLE_NAME + " WHERE id=?";
         ResultSet resultSet = null;
         try (final Connection connection = MySqlCP.getInstance().getConnection();
              final PreparedStatement statement = connection.prepareStatement(query)) {

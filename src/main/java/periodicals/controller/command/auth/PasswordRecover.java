@@ -24,7 +24,7 @@ public class PasswordRecover implements Command {
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = request.getParameter(PARAM_EMAIL);
-        DaoFactory daoFactory = (DaoFactory) request.getServletContext().getAttribute(SESSION_DAO);
+        DaoFactory daoFactory = (DaoFactory) request.getServletContext().getAttribute(APPLICATION_DAO);
         UserDao userDao = daoFactory.getUserDao();
         AlertMessage alertMessage = AlertMessage.CHECK_MAIL;
         try {

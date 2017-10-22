@@ -1,6 +1,5 @@
 package periodicals.filters;
 
-import periodicals.Role;
 import periodicals.model.entity.User;
 
 import javax.servlet.*;
@@ -10,11 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import static periodicals.Constants.PAGE_LOGIN;
-import static periodicals.Constants.PAGE_RESTRICTION;
 import static periodicals.Constants.SESSION_USER;
 
 @WebFilter(filterName = "SubscriberFilter", urlPatterns = {"/add/payment"})
-public class SubscriberFilter implements Filter  {
+public class SubscriberFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 

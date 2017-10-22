@@ -4,10 +4,10 @@ import periodicals.AlertMessage;
 import periodicals.controller.command.Command;
 import periodicals.controller.command.CommandResult;
 import periodicals.controller.command.CommandUtil;
-import periodicals.model.entity.User;
 import periodicals.model.dao.DaoFactory;
 import periodicals.model.dao.UserDao;
 import periodicals.model.dao.exceptions.PersistException;
+import periodicals.model.entity.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -15,8 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import static periodicals.Constants.*;
-import static periodicals.Constants.PARAM_ID;
-import static periodicals.Constants.SESSION_DAO;
 
 
 public class UserEdit implements Command {
@@ -25,7 +23,7 @@ public class UserEdit implements Command {
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         final int id = Integer.parseInt(request.getParameter(PARAM_ID));
         final String login = request.getParameter(PARAM_LOGIN);
-        DaoFactory daoFactory = (DaoFactory) request.getServletContext().getAttribute(SESSION_DAO);
+        DaoFactory daoFactory = (DaoFactory) request.getServletContext().getAttribute(APPLICATION_DAO);
         UserDao userDao = daoFactory.getUserDao();
         int status = -1;
         try {

@@ -1,14 +1,13 @@
 <%@ taglib prefix="l" uri="/WEB-INF/localizationTag" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page import="periodicals.model.entity.User,periodicals.model.dao.DaoFactory" %>
+<%@page import="org.apache.log4j.Logger,periodicals.model.dao.DaoFactory" %>
 <%@ page import="periodicals.model.dao.UserDao" %>
 <%@ page import="periodicals.model.dao.exceptions.PersistException" %>
-<%@ page import="static periodicals.Constants.SESSION_DAO" %>
+<%@ page import="static periodicals.Constants.APPLICATION_DAO" %>
 <%@ page import="static periodicals.Constants.PARAM_ID" %>
-<%@ page import="org.apache.log4j.Logger" %>
 <%
     String id = request.getParameter(PARAM_ID);
-    DaoFactory daoFactory = (DaoFactory) application.getAttribute(SESSION_DAO);
+    DaoFactory daoFactory = (DaoFactory) application.getAttribute(APPLICATION_DAO);
     UserDao userDao = daoFactory.getUserDao();
     User u = null;
     try {
