@@ -44,4 +44,35 @@
         <exception-type>periodicals.model.dao.exceptions.PersistException</exception-type>
         <location>/error.jsp</location>
     </error-page>
+
+    <servlet>
+        <servlet-name>header</servlet-name>
+        <jsp-file>/header.jsp</jsp-file>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>header</servlet-name>
+        <url-pattern>/header.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>footer</servlet-name>
+        <jsp-file>/footer.jsp</jsp-file>
+        <load-on-startup>2</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>footer</servlet-name>
+        <url-pattern>/footer.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>index</servlet-name>
+        <jsp-file>/index.jsp</jsp-file>
+        <load-on-startup>3</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>index</servlet-name>
+        <url-pattern>/index.jsp</url-pattern>
+    </servlet-mapping>
+
 </web-app>

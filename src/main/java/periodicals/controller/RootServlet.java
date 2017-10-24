@@ -13,7 +13,7 @@ import java.io.IOException;
 
 import static periodicals.Constants.SESSION_COMMAND_RESULT;
 
-@WebServlet(urlPatterns = {"/add/*", "/edit/*", "/delete/*", "/login", "/logout", "/recover", "/renew"}, loadOnStartup = 1)
+@WebServlet(urlPatterns = {"/add/*", "/edit/*", "/delete/*", "/login", "/logout", "/recover", "/renew"})
 public class RootServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
